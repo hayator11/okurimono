@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界一やさしい贈り物 — Revolist Lab</title>
+<meta name="description" content="東日本大震災のとき、世界中から届いたやさしさ。もらった人が、次に贈る人になる。世界一やさしい贈り物 — Revolist Lab">
+<meta property="og:title" content="世界一やさしい贈り物 — Revolist Lab">
+<meta property="og:description" content="もらった人が、次に贈る人になる。だから、生まれた。">
+<style>
+  :root {
+    --kinari: #F5EFE3;   /* 生成り */
+    --sumi:   #2B3A55;   /* 墨紺 */
+    --akane:  #E8865A;   /* 茜 */
+    --white:  #FFFDF8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    background: var(--kinari); color: var(--sumi); line-height: 2;
+    font-feature-settings: "palt";
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== HERO ===== */
+  .hero { padding: 96px 0 72px; text-align: center; }
+  .hero .from { font-size: 0.95rem; letter-spacing: .2em; opacity: .8; margin-bottom: 28px; }
+  .hero h1 {
+    font-size: clamp(2rem, 7vw, 3.4rem); font-weight: 900; letter-spacing: .06em;
+    line-height: 1.6;
+  }
+  .hero h1 .accent { color: var(--akane); }
+  .hero .sub { margin-top: 28px; font-size: 1.05rem; opacity: .9; }
+
+  /* ===== STORY ===== */
+  .story { background: var(--sumi); color: var(--kinari); padding: 80px 0; }
+  .story p { margin-bottom: 2em; font-size: 1.02rem; }
+  .story .big {
+    font-size: clamp(1.4rem, 4.5vw, 2rem); font-weight: 800; line-height: 1.9;
+    color: #fff; margin: 1.6em 0;
+  }
+  .story .big .accent { color: var(--akane); }
+  .story .quiet { opacity: .82; font-size: .95rem; }
+
+  /* ===== BRIDGE ===== */
+  .bridge { text-align: center; padding: 72px 24px 40px; }
+  .bridge h2 { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 900; letter-spacing: .08em; }
+  .bridge p { margin-top: 14px; opacity: .85; }
+
+  /* ===== CARDS ===== */
+  .cards { max-width: 980px; margin: 0 auto; padding: 24px 24px 80px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .cat { grid-column: 1 / -1; margin-top: 26px; font-size: .85rem; letter-spacing: .25em;
+    color: var(--akane); font-weight: 700; }
+  .card {
+    background: var(--white); border: 1px solid #e5dcc8; border-radius: 14px;
+    padding: 26px 26px 22px; display: flex; flex-direction: column;
+    text-decoration: none; color: var(--sumi);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(43,58,85,.12); }
+  .card .tag { font-size: .72rem; letter-spacing: .18em; opacity: .6; margin-bottom: 10px; }
+  .card h3 { font-size: 1.15rem; font-weight: 800; line-height: 1.7; }
+  .card h3 .dakara { color: var(--akane); }
+  .card .name { margin-top: auto; padding-top: 18px; font-size: .9rem; font-weight: 700; opacity: .85; }
+  .card .go { font-size: .8rem; color: var(--akane); font-weight: 700; }
+
+  /* ===== CLOSING ===== */
+  .closing { background: var(--sumi); color: var(--kinari); padding: 88px 24px; text-align: center; }
+  .closing .now { font-size: .95rem; opacity: .8; margin-bottom: 30px; }
+  .closing h2 { font-size: clamp(1.6rem, 5.5vw, 2.4rem); font-weight: 900; letter-spacing: .06em; line-height: 1.8; }
+  .closing .invite { margin-top: 34px; font-size: 1.05rem; }
+  .closing .invite .accent { color: var(--akane); font-weight: 800; }
+
+  footer { padding: 34px 24px; text-align: center; font-size: .8rem; opacity: .65; }
+</style>
+</head>
+<body>
+
+<!-- 受け取りから始まる -->
+<section class="hero">
+  <div class="wrap">
+    <div class="from">東日本大震災のとき、世界中から届いた。</div>
+    <h1>世界一<span class="accent">やさしい</span>贈り物。</h1>
+    <div class="sub">やさしさは、集まるほど積み重なっていく。</div>
+  </div>
+</section>
+
+<!-- 物語 -->
+<section class="story">
+  <div class="wrap">
+    <p>2011年、東日本大震災。<br>
+    あの日、世界中から東北へ、応援と支援が届いた。<br>
+    言葉も、毛布も、募金も、祈りも。<br>
+    東北は——日本は——世界中から「やさしさという贈り物」を受け取った。</p>
+
+    <p>2012年、宮城県東松島市の仮設住宅。<br>
+    受け取ったやさしさの真ん中で、被災した主婦たちが、靴下を縫い始めた。<br>
+    「がんばろう」じゃなくて、「めんどくしぇ」。<br>
+    それが今、<strong>世界35万人の家族</strong>になった。</p>
+
+    <p class="big">やさしさは、使っても減らない。<br>
+    集まれば集まるほど、積み重なっていく。<br>
+    だから、これは胸を張って言える。<br>
+    <span class="accent">世界一やさしい贈り物。</span></p>
+
+    <p class="quiet">世界中からやさしさを受け取り続けてきた、おのくんだからこそ言える言葉。</p>
+  </div>
+</section>
+
+<!-- 橋 -->
+<section class="bridge">
+  <h2>もらった人は、次に贈る人になる。<br>だから、生まれた。</h2>
+  <p>活動がいくつあっても、根っこは一つ。受け取った贈り物を、次へ贈ること。</p>
+</section>
+
+<!-- 各サイトへ -->
+<div class="cards">
+
+  <div class="cat">根っこ・原点</div>
+  <a class="card" href="https://onokun.com" target="_blank" rel="noreferrer">
+    <div class="tag">すべての始まり</div>
+    <h3>世界一やさしい贈り物。<br><span class="dakara">もらった人が、次に贈る人になる。</span></h3>
+    <div class="name">おのくん <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://sora-no-eki.onokun.com/" target="_blank" rel="noreferrer">
+    <div class="tag">実家・聖地</div>
+    <h3><span class="dakara">だから、帰ってこられる場所が生まれた。</span><br>おかえり。ここは、おのくんの実家です。</h3>
+    <div class="name">空の駅 <span class="go">→</span></div>
+  </a>
+
+  <div class="cat">入口・診断</div>
+  <a class="card" href="https://revo.onokun.com/" target="_blank" rel="noreferrer">
+    <div class="tag">診断</div>
+    <h3><span class="dakara">だから、あなたの一歩を一緒に見つける。</span><br>診断が、動き出すきっかけになる。</h3>
+    <div class="name">レボリスト診断 <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://ai.onokun.com/" target="_blank" rel="noreferrer">
+    <div class="tag">診断</div>
+    <h3><span class="dakara">だから、あなたに合うAIを見つける。</span><br>道具がわかれば、一歩が軽くなる。</h3>
+    <div class="name">AI玉手箱診断 <span class="go">→</span></div>
+  </a>
+
+  <div class="cat">仕組み・基盤</div>
+  <a class="card" href="https://revofunding.onokun.com/" target="_blank" rel="noreferrer">
+    <div class="tag">応援</div>
+    <h3><span class="dakara">だから、応援を形にする仕組みが生まれた。</span><br>あなたの応援が、誰かの挑戦を動かす。</h3>
+    <div class="name">レボファンディング <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://onokun.com/revolink" target="_blank" rel="noreferrer">
+    <div class="tag">つながり</div>
+    <h3><span class="dakara">だから、つながりが次の扉を開く。</span><br>あなたの日常が、誰かへの贈り物になる。</h3>
+    <div class="name">レボリンク <span class="go">→</span></div>
+  </a>
+
+  <div class="cat">体験・文化・表現</div>
+  <a class="card" href="https://onokun.com/bosai/" target="_blank" rel="noreferrer">
+    <div class="tag">防災</div>
+    <h3><span class="dakara">だから、防災をエンタメに変える。</span><br>楽しいから、参加したくなる。</h3>
+    <div class="name">防災×帽祭 <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://revofunding.onokun.com/revo-art.html" target="_blank" rel="noreferrer">
+    <div class="tag">アート</div>
+    <h3><span class="dakara">だから、社会の問題をアートに変える。</span><br>見たくなる形が、人の心を動かす。</h3>
+    <div class="name">レボアート <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://onokun.com/revohat/" target="_blank" rel="noreferrer">
+    <div class="tag">文化</div>
+    <h3><span class="dakara">だから、ハットの華やかさで心を動かす。</span><br>文化が、挑戦する空気をつくる。</h3>
+    <div class="name">レボハット <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://revosong.onokun.com/" target="_blank" rel="noreferrer">
+    <div class="tag">音楽</div>
+    <h3><span class="dakara">だから、想いを音楽に変える。</span><br>歌が広がれば、応援が広がる。</h3>
+    <div class="name">レボソング <span class="go">→</span></div>
+  </a>
+
+  <div class="cat">これまでのRevolist Lab</div>
+  <a class="card" href="https://onokun.com/revolist-lab/" target="_blank" rel="noreferrer">
+    <div class="tag">ハブ</div>
+    <h3><span class="dakara">だから、応援が人をつなぐ、未来をつくる。</span></h3>
+    <div class="name">レボリストLab <span class="go">→</span></div>
+  </a>
+</div>
+
+<!-- 結び：願いは最後に -->
+<section class="closing">
+  <div class="now">東日本大震災から15年。日本中で、世界中で、災害は今も起き続けている。<br>
+  あの日の私たちと同じように、孤独な挑戦者が生まれ続けている。</div>
+  <h2>孤独な挑戦者を、<br>減らしたい。</h2>
+  <div class="invite">受け取ったやさしさを、今度はあなたと<span class="accent">一緒に、贈りませんか。</span></div>
+</section>
+
+<footer>世界一やさしい贈り物 — Revolist Lab</footer>
+
+</body>
+</html>
