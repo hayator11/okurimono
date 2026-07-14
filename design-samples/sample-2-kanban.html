@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界一やさしい贈り物 — Revolist Lab</title>
+<meta name="description" content="東日本大震災のとき、世界中から届いたやさしさ。受け取って、贈る人になる。世界一やさしい贈り物 — Revolist Lab">
+<meta property="og:title" content="世界一やさしい贈り物 — Revolist Lab">
+<meta property="og:description" content="受け取って、贈る人になる。だから、生まれた。">
+<style>
+  :root {
+    --kinari: #F5EFE3;   /* 生成り */
+    --sumi:   #2B3A55;   /* 墨紺 */
+    --sumi-deep: #1B2740;
+    --shadow-dark: #121A29;
+    --shadow-light: #D9CFB9;
+    --akane:  #E8865A;   /* 茜 */
+    --white:  #FFFDF8;
+    --post: rgba(245,239,227,.28);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { overflow-x: clip; }
+  body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    background: var(--kinari); color: var(--sumi); line-height: 2;
+    font-feature-settings: "palt";
+  }
+  .nowrap { display: inline-block; }
+
+  /* ===== HERO ｜ 街いちばんの看板 ===== */
+  .hero {
+    background: var(--sumi);
+    padding: clamp(14px, 2.5vw, 28px);
+  }
+  .hero-frame {
+    position: relative;
+    border: 4px solid var(--kinari);
+    min-height: calc(100vh - 56px);
+    min-height: calc(100svh - 56px);
+    max-width: 1380px; margin: 0 auto;
+    padding: clamp(18px, 4vw, 64px) clamp(18px, 4.5vw, 72px);
+    display: flex; flex-direction: column;
+    color: var(--kinari);
+  }
+  .bolt {
+    position: absolute; width: 10px; height: 10px; background: var(--kinari);
+  }
+  .b1 { top: 8px; left: 8px; } .b2 { top: 8px; right: 8px; }
+  .b3 { bottom: 8px; left: 8px; } .b4 { bottom: 8px; right: 8px; }
+  .hero .from {
+    align-self: flex-start;
+    background: var(--kinari); color: var(--sumi);
+    font-size: clamp(.66rem, 2vw, .95rem);
+    font-weight: 800; letter-spacing: .14em; line-height: 1.9;
+    padding: 6px 16px;
+    margin-bottom: auto;
+  }
+  .hero h1 {
+    margin-top: clamp(40px, 7vh, 80px);
+    font-size: clamp(2rem, 10.5vw, 8.5rem);
+    font-weight: 900; letter-spacing: .03em; line-height: 1.28;
+    color: #fff;
+  }
+  .hero h1 .accent { color: var(--akane); }
+  .hero .sub {
+    margin-top: clamp(20px, 3.5vh, 40px);
+    font-size: clamp(.95rem, 2.4vw, 1.5rem);
+    font-weight: 700; letter-spacing: .12em; line-height: 1.9;
+  }
+  .hero-arrow {
+    margin-top: auto; padding-top: clamp(32px, 6vh, 64px);
+    align-self: center; line-height: 0;
+  }
+  .hero-arrow svg { width: clamp(30px, 4.5vw, 52px); height: auto; display: block; }
+
+  /* ===== STORY ｜ ポスターパネル ===== */
+  .story { padding: clamp(72px, 10vw, 120px) 16px; }
+  .story-panel {
+    max-width: 900px; margin: 0 auto;
+    background: var(--white);
+    border: 5px solid var(--sumi);
+    box-shadow: 12px 12px 0 var(--sumi);
+    padding: clamp(28px, 6vw, 72px) clamp(20px, 6vw, 72px);
+  }
+  .story p { margin-bottom: 2em; font-size: clamp(.95rem, 1.6vw, 1.08rem); }
+  .story p:last-child { margin-bottom: 0; }
+  .story strong { font-weight: 900; border-bottom: 4px solid var(--akane); }
+  .story .big {
+    font-size: clamp(1.5rem, 4.2vw, 2.5rem); font-weight: 900; line-height: 1.8;
+    letter-spacing: .02em; margin: 1.4em 0;
+  }
+  .story .big .accent { color: var(--akane); }
+  .story .quiet { opacity: .74; font-size: clamp(.85rem, 1.4vw, .95rem); }
+
+  /* ===== BRIDGE ｜ 交差点 ===== */
+  .bridge { text-align: center; padding: clamp(24px, 4vw, 48px) 20px clamp(56px, 7vw, 88px); }
+  .bridge h2 {
+    font-size: clamp(1.7rem, 5.6vw, 4.2rem);
+    font-weight: 900; letter-spacing: .04em; line-height: 1.5;
+  }
+  .bridge h2 .accent { color: var(--akane); }
+  .bridge p {
+    margin-top: 22px; font-weight: 700;
+    font-size: clamp(.9rem, 1.8vw, 1.1rem); letter-spacing: .08em;
+  }
+  .bridge-arrow { margin-top: clamp(28px, 4vw, 48px); line-height: 0; }
+  .bridge-arrow svg { width: clamp(30px, 4.5vw, 52px); height: auto; display: inline-block; }
+
+  /* ===== CARDS ｜ 看板が並ぶ通り ===== */
+  .street-wrap { background: var(--sumi); padding: clamp(64px, 8vw, 104px) 20px clamp(88px, 10vw, 128px); }
+  .cards {
+    max-width: 960px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+    gap: 58px 26px;
+    counter-reset: kanban;
+  }
+  .cards .card:last-of-type { grid-column: 1 / -1; }
+  .cat {
+    grid-column: 1 / -1;
+    display: flex; align-items: center; gap: 16px;
+    color: var(--kinari); font-weight: 900;
+    font-size: clamp(.8rem, 1.6vw, .95rem); letter-spacing: .22em;
+    margin-top: 18px; margin-bottom: -22px;
+  }
+  .cat::before { content: ""; width: 13px; height: 13px; background: var(--akane); flex: none; }
+  .cat::after { content: ""; flex: 1; height: 3px; background: var(--post); min-width: 24px; }
+  .card {
+    counter-increment: kanban;
+    position: relative;
+    background: var(--white);
+    border: 4px solid var(--sumi-deep);
+    box-shadow: 8px 8px 0 var(--shadow-dark);
+    padding: 34px 26px 0;
+    display: flex; flex-direction: column;
+    text-decoration: none; color: var(--sumi);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .card::before {
+    content: counter(kanban, decimal-leading-zero);
+    position: absolute; top: -16px; left: 16px;
+    background: var(--akane); color: var(--white);
+    font-weight: 900; font-size: .8rem; letter-spacing: .12em;
+    line-height: 1; padding: 7px 12px 6px;
+    box-shadow: 3px 3px 0 var(--shadow-dark);
+  }
+  .card::after {
+    content: ""; position: absolute; top: 100%; left: 0; right: 0; height: 30px;
+    background: linear-gradient(90deg,
+      transparent 0 18%, var(--post) 18% calc(18% + 10px),
+      transparent calc(18% + 10px) calc(82% - 10px),
+      var(--post) calc(82% - 10px) 82%, transparent 82%);
+  }
+  .card:hover, .card:focus-visible {
+    transform: translate(-2px, -6px);
+    box-shadow: 12px 15px 0 var(--shadow-dark);
+  }
+  .card:focus-visible { outline: 3px solid var(--akane); outline-offset: 3px; }
+  .card .tag {
+    align-self: flex-start;
+    border: 2px solid var(--sumi); padding: 1px 12px;
+    font-size: .7rem; font-weight: 800; letter-spacing: .2em;
+    line-height: 1.9; margin-bottom: 16px;
+  }
+  .card h3 { font-size: clamp(1.05rem, 1.7vw, 1.2rem); font-weight: 900; line-height: 1.8; letter-spacing: .01em; margin-bottom: 26px; }
+  .card h3 .dakara { color: var(--akane); }
+  .card .name {
+    margin: auto -26px 0; padding: 13px 20px;
+    border-top: 3px solid var(--sumi);
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    font-size: .95rem; font-weight: 900; letter-spacing: .06em;
+  }
+  .card .go { font-size: 1.25rem; color: var(--akane); font-weight: 900; line-height: 1; display: inline-block; transition: transform .15s ease; }
+  .card:hover .go { transform: translateX(5px); }
+
+  /* ===== CLOSING ｜ 最後の大看板 ===== */
+  .closing { padding: clamp(72px, 10vw, 128px) 16px; }
+  .closing-panel {
+    max-width: 1000px; margin: 0 auto;
+    background: var(--sumi); color: var(--kinari);
+    box-shadow: 12px 12px 0 var(--shadow-light);
+    padding: clamp(40px, 7vw, 88px) clamp(20px, 6vw, 72px);
+    text-align: center;
+  }
+  .closing .now { font-size: clamp(.82rem, 1.5vw, .98rem); opacity: .85; margin-bottom: clamp(28px, 4vw, 44px); }
+  .closing h2 {
+    font-size: clamp(1.7rem, 7.5vw, 5.4rem);
+    font-weight: 900; letter-spacing: .02em; line-height: 1.5; color: #fff;
+  }
+  .closing .invite { margin-top: clamp(28px, 4vw, 44px); font-size: clamp(.95rem, 1.9vw, 1.2rem); font-weight: 700; }
+  .closing .invite .accent { color: var(--akane); font-weight: 900; display: inline-block; }
+
+  /* ===== FOOTER ｜ 下帯 ===== */
+  footer {
+    background: var(--sumi); color: var(--kinari);
+    border-top: 6px solid var(--akane);
+    padding: 26px 20px; text-align: center;
+    font-size: .78rem; font-weight: 700; letter-spacing: .2em; opacity: .95;
+  }
+
+  @media (max-width: 640px) {
+    .story-panel { box-shadow: 7px 7px 0 var(--sumi); }
+    .closing-panel { box-shadow: 7px 7px 0 var(--shadow-light); }
+    .card { box-shadow: 6px 6px 0 var(--shadow-dark); }
+    .cards { gap: 50px 20px; }
+    .card::after { height: 22px; }
+  }
+  @media (max-width: 360px) {
+    .hero .from { letter-spacing: .05em; padding: 5px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 受け取りから始まる -->
+<section class="hero">
+  <div class="hero-frame">
+    <div class="bolt b1" aria-hidden="true"></div>
+    <div class="bolt b2" aria-hidden="true"></div>
+    <div class="bolt b3" aria-hidden="true"></div>
+    <div class="bolt b4" aria-hidden="true"></div>
+    <div class="from">東日本大震災のとき、世界中から届いた。</div>
+    <h1><span class="nowrap">世界一<span class="accent">やさしい</span></span><span class="nowrap">贈り物。</span></h1>
+    <div class="sub">やさしさは、集まるほど積み重なっていく。</div>
+    <div class="hero-arrow" aria-hidden="true">
+      <svg viewBox="0 0 48 58" xmlns="http://www.w3.org/2000/svg"><path d="M24 2v44M6 30l18 18 18-18" stroke="#E8865A" stroke-width="8" fill="none" stroke-linecap="square"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- 物語 -->
+<section class="story">
+  <div class="story-panel">
+    <p>2011年、東日本大震災。<br>
+    あの日、世界中から東北へ、応援と支援が届いた。<br>
+    言葉も、毛布も、募金も、祈りも。<br>
+    東北は——日本は——世界中から「やさしさという贈り物」を受け取った。</p>
+
+    <p>2012年、宮城県東松島市の仮設住宅。<br>
+    受け取ったやさしさの真ん中で、被災した主婦たちが、靴下を縫い始めた。<br>
+    「がんばろう」じゃなくて、「めんどくしぇ」。<br>
+    それが今、<strong>世界35万人の家族</strong>になった。</p>
+
+    <p class="big">やさしさは、使っても減らない。<br>
+    集まれば集まるほど、積み重なっていく。<br>
+    だから、これは胸を張って言える。<br>
+    <span class="accent"><span class="nowrap">世界一やさしい</span><span class="nowrap">贈り物。</span></span></p>
+
+    <p class="quiet">世界中からやさしさを受け取り続けてきた、おのくんだからこそ言える言葉。</p>
+  </div>
+</section>
+
+<!-- 橋 -->
+<section class="bridge">
+  <h2><span class="nowrap">受け取って、</span><span class="nowrap"><span class="accent">贈る人</span>になる。</span><br>だから、生まれた。</h2>
+  <p>活動がいくつあっても、根っこは一つ。受け取った贈り物を、次へ贈ること。</p>
+  <div class="bridge-arrow" aria-hidden="true">
+    <svg viewBox="0 0 48 58" xmlns="http://www.w3.org/2000/svg"><path d="M24 2v44M6 30l18 18 18-18" stroke="#E8865A" stroke-width="8" fill="none" stroke-linecap="square"/></svg>
+  </div>
+</section>
+
+<!-- 各サイトへ -->
+<div class="street-wrap">
+<div class="cards">
+
+  <div class="cat">根っこ・原点</div>
+  <a class="card" href="https://onokun.com" target="_blank" rel="noreferrer">
+    <div class="tag">すべての始まり</div>
+    <h3><span class="nowrap">世界一やさしい</span><span class="nowrap">贈り物。</span><br><span class="dakara"><span class="nowrap">受け取って、</span><span class="nowrap">贈る人になる。</span></span></h3>
+    <div class="name">おのくん <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://sora-no-eki.onokun.com/" target="_blank" rel="noreferrer">
+    <div class="tag">実家・聖地</div>
+    <h3><span class="dakara">だから、帰ってこられる場所が生まれた。</span><br>おかえり。ここは、おのくんの実家です。</h3>
+    <div class="name">空の駅 <span class="go">→</span></div>
+  </a>
+
+  <div class="cat">入口・診断</div>
+  <a class="card" href="https://revo.onokun.com/diagnosis/entry" target="_blank" rel="noreferrer">
+    <div class="tag">診断</div>
+    <h3><span class="dakara">だから、あなたの一歩を一緒に見つける。</span><br>診断が、動き出すきっかけになる。</h3>
+    <div class="name">レボリスト診断 <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://ai.onokun.com/" target="_blank" rel="noreferrer">
+    <div class="tag">診断</div>
+    <h3><span class="dakara">だから、あなたに合うAIを見つける。</span><br>道具がわかれば、一歩が軽くなる。</h3>
+    <div class="name">AI玉手箱診断 <span class="go">→</span></div>
+  </a>
+
+  <div class="cat">仕組み・基盤</div>
+  <a class="card" href="https://revofunding.onokun.com/" target="_blank" rel="noreferrer">
+    <div class="tag">応援</div>
+    <h3><span class="dakara">だから、応援を形にする仕組みが生まれた。</span><br>あなたの応援が、誰かの挑戦を動かす。</h3>
+    <div class="name">レボファンディング <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://onokun.com/revolink" target="_blank" rel="noreferrer">
+    <div class="tag">つながり</div>
+    <h3><span class="dakara">だから、つながりが次の扉を開く。</span><br>あなたの日常が、誰かへの贈り物になる。</h3>
+    <div class="name">レボリンク <span class="go">→</span></div>
+  </a>
+
+  <div class="cat">体験・文化・表現</div>
+  <a class="card" href="https://onokun.com/bosai/" target="_blank" rel="noreferrer">
+    <div class="tag">防災</div>
+    <h3><span class="dakara">だから、防災をエンタメに変える。</span><br>楽しいから、参加したくなる。</h3>
+    <div class="name">防災×帽祭 <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://revofunding.onokun.com/revo-art.html" target="_blank" rel="noreferrer">
+    <div class="tag">アート</div>
+    <h3><span class="dakara">だから、社会の問題をアートに変える。</span><br>見たくなる形が、人の心を動かす。</h3>
+    <div class="name">レボアート <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://onokun.com/revohat/" target="_blank" rel="noreferrer">
+    <div class="tag">文化</div>
+    <h3><span class="dakara">だから、ハットの華やかさで心を動かす。</span><br>文化が、挑戦する空気をつくる。</h3>
+    <div class="name">レボハット <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://revosong.onokun.com/" target="_blank" rel="noreferrer">
+    <div class="tag">音楽</div>
+    <h3><span class="dakara">だから、想いを音楽に変える。</span><br>歌が広がれば、応援が広がる。</h3>
+    <div class="name">レボソング <span class="go">→</span></div>
+  </a>
+
+  <div class="cat">これまでのRevolist Lab</div>
+  <a class="card" href="https://onokun.com/revolist-lab/" target="_blank" rel="noreferrer">
+    <div class="tag">ハブ</div>
+    <h3><span class="dakara">だから、応援が人をつなぐ、未来をつくる。</span></h3>
+    <div class="name">レボリストLab <span class="go">→</span></div>
+  </a>
+</div>
+</div>
+
+<!-- 結び：願いは最後に -->
+<section class="closing">
+  <div class="closing-panel">
+    <div class="now">東日本大震災から15年。日本中で、世界中で、災害は今も起き続けている。<br>
+    あの日の私たちと同じように、孤独な挑戦者が生まれ続けている。</div>
+    <h2>孤独な挑戦者を、<br>減らしたい。</h2>
+    <div class="invite">受け取ったやさしさを、今度はあなたと<span class="accent">一緒に、贈りませんか。</span></div>
+  </div>
+</section>
+
+<footer><span class="nowrap">世界一やさしい贈り物</span> — Revolist Lab</footer>
+
+</body>
+</html>

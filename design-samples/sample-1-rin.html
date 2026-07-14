@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界一やさしい贈り物 — Revolist Lab</title>
+<meta name="description" content="東日本大震災のとき、世界中から届いたやさしさ。受け取って、贈る人になる。世界一やさしい贈り物 — Revolist Lab">
+<meta property="og:title" content="世界一やさしい贈り物 — Revolist Lab">
+<meta property="og:description" content="受け取って、贈る人になる。だから、生まれた。">
+<style>
+  :root {
+    --kinari: #F5EFE3;   /* 生成り：地 */
+    --sumi:   #2B3A55;   /* 墨紺：文字・強さ */
+    --akane:  #E8865A;   /* 茜：体温の一滴 */
+    --white:  #FFFDF8;
+    --hair:   rgba(43, 58, 85, .22);   /* 細い罫線 */
+    --hair-l: rgba(245, 239, 227, .28); /* 暗地の上の罫線 */
+    --mincho: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    --gothic: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--gothic);
+    background: var(--kinari);
+    color: var(--sumi);
+    line-height: 2.2;
+    font-feature-settings: "palt";
+    overflow-x: hidden;
+  }
+  .nowrap { display: inline-block; }
+  .accent { color: var(--akane); }
+
+  /* =====================================================
+     HERO — 床の間。垂直の一行が掛け軸のように下りてくる
+     ===================================================== */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: clamp(120px, 16vh, 176px) 24px clamp(96px, 14vh, 160px);
+    position: relative;
+  }
+  /* 上から下りる一本の細い線 */
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    width: 1px;
+    height: clamp(56px, 9vh, 104px);
+    background: var(--hair);
+  }
+  /* 縦書きの一行。各字を vertical-rl の升目に据え、
+     送りは親の升の高さで律する（フォント差に依存しない） */
+  .hero .from {
+    font-family: var(--mincho);
+    font-size: clamp(0.95rem, 2.6vw, 1.1rem);
+    width: 1em;
+    margin: 0 auto clamp(56px, 9vh, 96px);
+  }
+  .hero .from span {
+    display: block;
+    writing-mode: vertical-rl;
+    text-align: start;   /* 縦の升目は行頭起点で揃える */
+    width: 1em;
+    height: 1.46em;
+    line-height: 1;
+    font-feature-settings: normal; /* 縦の升目は全角ベタ組み */
+  }
+  /* 縦書きの結びに、茜の一滴 */
+  .hero .from::after {
+    content: "";
+    display: block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--akane);
+    margin: 1.3em auto 0;
+  }
+  .hero h1 {
+    font-family: var(--mincho);
+    font-weight: 600;
+    font-size: clamp(2.1rem, 7.6vw, 4.4rem);
+    letter-spacing: .12em;
+    line-height: 1.8;
+  }
+  .hero .sub {
+    margin-top: clamp(36px, 6vh, 64px);
+    font-family: var(--mincho);
+    font-size: clamp(0.95rem, 2.6vw, 1.1rem);
+    letter-spacing: .3em;
+    opacity: .85;
+  }
+
+  /* =====================================================
+     STORY — 墨紺の間。language は静かに、断定は大きく
+     ===================================================== */
+  .story {
+    background: var(--sumi);
+    color: var(--kinari);
+    padding: clamp(96px, 14vh, 176px) 24px;
+  }
+  .story .inner { max-width: 620px; margin: 0 auto; }
+  .story p {
+    font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+    margin-bottom: 3.2em;
+    letter-spacing: .06em;
+  }
+  .story p:last-child { margin-bottom: 0; }
+  .story strong { color: #fff; font-weight: 700; }
+  .story .big {
+    font-family: var(--mincho);
+    font-weight: 600;
+    font-size: clamp(1.35rem, 4.2vw, 1.95rem);
+    line-height: 2.1;
+    letter-spacing: .06em;
+    color: #fff;
+    margin: 2.4em 0;
+    position: relative;
+    padding-left: clamp(20px, 4vw, 36px);
+  }
+  /* 断定の左に、一本の細い線 */
+  .story .big::before {
+    content: "";
+    position: absolute;
+    left: 0; top: .4em; bottom: .4em;
+    width: 1px;
+    background: var(--hair-l);
+  }
+  .story .quiet {
+    opacity: .72;
+    font-size: .9rem;
+    letter-spacing: .1em;
+  }
+
+  /* =====================================================
+     BRIDGE — 結界。線と余白だけで章を替える
+     ===================================================== */
+  .bridge {
+    text-align: center;
+    padding: clamp(104px, 16vh, 192px) 24px clamp(56px, 8vh, 96px);
+    position: relative;
+  }
+  .bridge::before {
+    content: "";
+    position: absolute;
+    top: clamp(48px, 7vh, 88px);
+    left: 50%;
+    width: 1px;
+    height: clamp(32px, 5vh, 56px);
+    background: var(--hair);
+  }
+  .bridge h2 {
+    font-family: var(--mincho);
+    font-weight: 600;
+    font-size: clamp(1.55rem, 5.2vw, 2.7rem);
+    letter-spacing: .12em;
+    line-height: 2;
+  }
+  .bridge p {
+    margin-top: clamp(28px, 4vh, 44px);
+    font-size: clamp(0.9rem, 2.4vw, 1rem);
+    letter-spacing: .12em;
+    opacity: .8;
+  }
+
+  /* =====================================================
+     CARDS — 目録。飾らない白、細い罫、静かな指し示し
+     ===================================================== */
+  .cards {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: clamp(24px, 4vh, 48px) 24px clamp(104px, 14vh, 168px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 28px;
+  }
+  .cat {
+    grid-column: 1 / -1;
+    margin-top: clamp(40px, 6vh, 64px);
+    font-family: var(--mincho);
+    font-size: .95rem;
+    font-weight: 600;
+    letter-spacing: .4em;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .cat:first-child { margin-top: 0; }
+  .cat::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--hair);
+  }
+  .card {
+    background: var(--white);
+    border: 1px solid var(--hair);
+    padding: clamp(30px, 4vw, 42px) clamp(26px, 3.5vw, 38px) clamp(24px, 3vw, 32px);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--sumi);
+    position: relative;
+    transition: border-color .25s ease;
+  }
+  /* 上辺にだけ、茜が一寸だけ差す */
+  .card::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 28px; height: 1px;
+    background: var(--akane);
+    transition: width .3s ease;
+  }
+  .card:hover { border-color: rgba(43, 58, 85, .45); }
+  .card:hover::before { width: calc(100% + 2px); }
+  .card .tag {
+    font-size: .72rem;
+    letter-spacing: .32em;
+    opacity: .55;
+    margin-bottom: 18px;
+  }
+  .card h3 {
+    font-family: var(--mincho);
+    font-weight: 600;
+    font-size: clamp(1.08rem, 2.6vw, 1.2rem);
+    line-height: 2;
+    letter-spacing: .06em;
+  }
+  .card h3 .dakara { color: var(--akane); }
+  .card .name {
+    margin-top: auto;
+    padding-top: 28px;
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .card .go {
+    color: var(--akane);
+    font-weight: 700;
+    transition: transform .25s ease;
+  }
+  .card:hover .go { transform: translateX(4px); }
+
+  /* =====================================================
+     CLOSING — 願い。もっとも大きな余白の中で断定する
+     ===================================================== */
+  .closing {
+    background: var(--sumi);
+    color: var(--kinari);
+    padding: clamp(120px, 18vh, 208px) 24px;
+    text-align: center;
+    position: relative;
+  }
+  .closing::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    width: 1px;
+    height: clamp(48px, 8vh, 88px);
+    background: var(--hair-l);
+  }
+  .closing .now {
+    font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+    letter-spacing: .08em;
+    opacity: .74;
+    margin-bottom: clamp(48px, 8vh, 80px);
+  }
+  .closing h2 {
+    font-family: var(--mincho);
+    font-weight: 600;
+    font-size: clamp(1.9rem, 6.4vw, 3.4rem);
+    letter-spacing: .14em;
+    line-height: 2;
+    color: #fff;
+  }
+  .closing .invite {
+    margin-top: clamp(48px, 8vh, 80px);
+    font-size: clamp(0.95rem, 2.6vw, 1.1rem);
+    letter-spacing: .1em;
+  }
+  .closing .invite .accent { font-weight: 700; }
+
+  /* =====================================================
+     FOOTER
+     ===================================================== */
+  footer {
+    padding: clamp(44px, 6vh, 64px) 24px;
+    text-align: center;
+    font-family: var(--mincho);
+    font-size: .8rem;
+    letter-spacing: .28em;
+    opacity: .6;
+  }
+</style>
+</head>
+<body>
+
+<!-- 受け取りから始まる -->
+<section class="hero">
+  <div class="from" aria-label="東日本大震災のとき、世界中から届いた。"><span>東</span><span>日</span><span>本</span><span>大</span><span>震</span><span>災</span><span>の</span><span>と</span><span>き</span><span>、</span><span>世</span><span>界</span><span>中</span><span>か</span><span>ら</span><span>届</span><span>い</span><span>た</span><span>。</span></div>
+  <h1><span class="nowrap">世界一<span class="accent">やさしい</span></span><span class="nowrap">贈り物。</span></h1>
+  <div class="sub"><span class="nowrap">やさしさは、</span><span class="nowrap">集まるほど積み重なっていく。</span></div>
+</section>
+
+<!-- 物語 -->
+<section class="story">
+  <div class="inner">
+    <p>2011年、東日本大震災。<br>
+    あの日、世界中から東北へ、応援と支援が届いた。<br>
+    言葉も、毛布も、募金も、祈りも。<br>
+    東北は——日本は——世界中から「やさしさという贈り物」を受け取った。</p>
+
+    <p>2012年、宮城県東松島市の仮設住宅。<br>
+    受け取ったやさしさの真ん中で、被災した主婦たちが、靴下を縫い始めた。<br>
+    「がんばろう」じゃなくて、「めんどくしぇ」。<br>
+    それが今、<strong>世界35万人の家族</strong>になった。</p>
+
+    <p class="big"><span class="nowrap">やさしさは、</span><span class="nowrap">使っても減らない。</span><br>
+    <span class="nowrap">集まれば集まるほど、</span><span class="nowrap">積み重なっていく。</span><br>
+    <span class="nowrap">だから、</span><span class="nowrap">これは胸を張って言える。</span><br>
+    <span class="accent"><span class="nowrap">世界一やさしい</span><span class="nowrap">贈り物。</span></span></p>
+
+    <p class="quiet">世界中からやさしさを受け取り続けてきた、おのくんだからこそ言える言葉。</p>
+  </div>
+</section>
+
+<!-- 橋 -->
+<section class="bridge">
+  <h2><span class="nowrap">受け取って、</span><span class="nowrap"><span class="accent">贈る人</span>になる。</span><br>だから、生まれた。</h2>
+  <p>活動がいくつあっても、根っこは一つ。受け取った贈り物を、次へ贈ること。</p>
+</section>
+
+<!-- 各サイトへ -->
+<div class="cards">
+
+  <div class="cat">根っこ・原点</div>
+  <a class="card" href="https://onokun.com" target="_blank" rel="noreferrer">
+    <div class="tag">すべての始まり</div>
+    <h3><span class="nowrap">世界一やさしい</span><span class="nowrap">贈り物。</span><br><span class="dakara"><span class="nowrap">受け取って、</span><span class="nowrap">贈る人になる。</span></span></h3>
+    <div class="name">おのくん <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://sora-no-eki.onokun.com/" target="_blank" rel="noreferrer">
+    <div class="tag">実家・聖地</div>
+    <h3><span class="dakara">だから、帰ってこられる場所が生まれた。</span><br>おかえり。ここは、おのくんの実家です。</h3>
+    <div class="name">空の駅 <span class="go">→</span></div>
+  </a>
+
+  <div class="cat">入口・診断</div>
+  <a class="card" href="https://revo.onokun.com/diagnosis/entry" target="_blank" rel="noreferrer">
+    <div class="tag">診断</div>
+    <h3><span class="dakara">だから、あなたの一歩を一緒に見つける。</span><br>診断が、動き出すきっかけになる。</h3>
+    <div class="name">レボリスト診断 <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://ai.onokun.com/" target="_blank" rel="noreferrer">
+    <div class="tag">診断</div>
+    <h3><span class="dakara">だから、あなたに合うAIを見つける。</span><br>道具がわかれば、一歩が軽くなる。</h3>
+    <div class="name">AI玉手箱診断 <span class="go">→</span></div>
+  </a>
+
+  <div class="cat">仕組み・基盤</div>
+  <a class="card" href="https://revofunding.onokun.com/" target="_blank" rel="noreferrer">
+    <div class="tag">応援</div>
+    <h3><span class="dakara">だから、応援を形にする仕組みが生まれた。</span><br>あなたの応援が、誰かの挑戦を動かす。</h3>
+    <div class="name">レボファンディング <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://onokun.com/revolink" target="_blank" rel="noreferrer">
+    <div class="tag">つながり</div>
+    <h3><span class="dakara">だから、つながりが次の扉を開く。</span><br>あなたの日常が、誰かへの贈り物になる。</h3>
+    <div class="name">レボリンク <span class="go">→</span></div>
+  </a>
+
+  <div class="cat">体験・文化・表現</div>
+  <a class="card" href="https://onokun.com/bosai/" target="_blank" rel="noreferrer">
+    <div class="tag">防災</div>
+    <h3><span class="dakara">だから、防災をエンタメに変える。</span><br>楽しいから、参加したくなる。</h3>
+    <div class="name">防災×帽祭 <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://revofunding.onokun.com/revo-art.html" target="_blank" rel="noreferrer">
+    <div class="tag">アート</div>
+    <h3><span class="dakara">だから、社会の問題をアートに変える。</span><br>見たくなる形が、人の心を動かす。</h3>
+    <div class="name">レボアート <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://onokun.com/revohat/" target="_blank" rel="noreferrer">
+    <div class="tag">文化</div>
+    <h3><span class="dakara">だから、ハットの華やかさで心を動かす。</span><br>文化が、挑戦する空気をつくる。</h3>
+    <div class="name">レボハット <span class="go">→</span></div>
+  </a>
+  <a class="card" href="https://revosong.onokun.com/" target="_blank" rel="noreferrer">
+    <div class="tag">音楽</div>
+    <h3><span class="dakara">だから、想いを音楽に変える。</span><br>歌が広がれば、応援が広がる。</h3>
+    <div class="name">レボソング <span class="go">→</span></div>
+  </a>
+
+  <div class="cat">これまでのRevolist Lab</div>
+  <a class="card" href="https://onokun.com/revolist-lab/" target="_blank" rel="noreferrer">
+    <div class="tag">ハブ</div>
+    <h3><span class="dakara">だから、応援が人をつなぐ、未来をつくる。</span></h3>
+    <div class="name">レボリストLab <span class="go">→</span></div>
+  </a>
+</div>
+
+<!-- 結び：願いは最後に -->
+<section class="closing">
+  <div class="now">東日本大震災から15年。日本中で、世界中で、災害は今も起き続けている。<br>
+  あの日の私たちと同じように、孤独な挑戦者が生まれ続けている。</div>
+  <h2>孤独な挑戦者を、<br>減らしたい。</h2>
+  <div class="invite">受け取ったやさしさを、今度はあなたと<span class="accent">一緒に、贈りませんか。</span></div>
+</section>
+
+<footer>世界一やさしい贈り物 — Revolist Lab</footer>
+
+</body>
+</html>
